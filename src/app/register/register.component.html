@@ -1,0 +1,48 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="form-group">
+          <label for="registerUsername">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" id="registerUsername" formControlName="registerUsername" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+            </div>
+            <input type="password" id="registerPassword" formControlName="registerPassword" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+            </div>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthYear">Birth Year</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+            <select id="birthYear" formControlName="birthYear" class="form-control" required>
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="registerDebugMessage" class="alert mt-1" [ngClass]="getMessageClass()">
+          {{ registerDebugMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </form>
+    </div>
+</div>

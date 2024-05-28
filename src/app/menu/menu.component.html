@@ -1,0 +1,44 @@
+<!-- menu.component.html -->
+<nav class="navbar navbar-light navbar-expand-md bg-light">
+  <a class="navbar-brand" href="#">PonyRacer</a>
+  <button (click)="toggleMenu()" class="navbar-toggler custom-toggler bg-success border-success" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [class.collapse]="isCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <div class="d-flex align-items-center">
+      <div *ngIf="authService.isLoggedIn()" class="d-flex align-items-center">
+        <a class="nav-link" routerLink="/money-history">
+          <span class="navbar-text mr-3">
+            {{ userService.getUsername() }}
+          </span>
+          <span class="navbar-text mr-3">
+            <span *ngIf="userService.getScore() !== null">
+              {{ userService.getScore() | currency:'USD' }}
+              <i class="fas fa-coins ml-1"></i>
+            </span>
+          </span>
+        </a>
+        <button (click)="logout()" class="btn btn-danger">
+          Logout <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+
+      <ng-container *ngIf="!authService.isLoggedIn(); else loggedInTemplate" class="d-flex align-items-center">
+        <li class="nav-item mr-3">
+          <a class="nav-link" routerLink="/login">Log In</a>
+        </li>
+        <li class="nav-item mr-3">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+      </ng-container>
+      <ng-template #loggedInTemplate class="align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/races">Races</a>
+        </li>
+      </ng-template>
+      </div>
+    </ul>
+  </div>
+</nav>

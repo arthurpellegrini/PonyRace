@@ -1,0 +1,28 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" id="loginUsername" formControlName="loginUsername" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+            </div>
+            <input type="password" id="loginPassword" formControlName="loginPassword" class="form-control" required>
+          </div>
+        </div>
+        <div *ngIf="loginDebugMessage" class="alert mt-1" [ngClass]="getMessageClass()">
+          {{ loginDebugMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      </form>
+    </div>
+</div>

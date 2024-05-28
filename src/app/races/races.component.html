@@ -1,0 +1,19 @@
+<!-- src/app/races/races.component.html -->
+<ul class="list-group">
+  <button  class="btn btn-primary mb-3" (click)="toggleRaceDisplay()">
+    Print {{ displayPendingRaces ? 'Finished Races' : 'Pending Races' }}
+  </button>
+  <li *ngFor="let race of races$ | async | slice:0:nbSlices; let i = index"
+      [ngClass]="{ 'list-group-item': true}">
+    <h4>{{ race.name }}</h4>
+    <p *ngIf="displayPendingRaces">Starts in {{ getTimeRemaining(race.startInstant) }}</p>
+    <p *ngIf="!displayPendingRaces">{{ getTimeRemaining(race.startInstant) }} ago</p>
+    <div class="ponies-container">
+      <div *ngFor="let pony of race.ponies" class="pony">
+        <img [src]="raceService.getPonyImageUrl(pony.color)" alt="{{ pony.name }}" />
+        <div>{{ pony.name }}</div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-info" *ngIf="displayPendingRaces" (click)="betOnRace(race.id)">Bet on {{ race.name }}</button>
+  </li>
+</ul>

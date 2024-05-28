@@ -1,0 +1,22 @@
+.ponies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.pony {
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 10px;
+}
+
+.pony.selected {
+  border-color: green;
+  border-radius: 10px;
+}
+
+.pony.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

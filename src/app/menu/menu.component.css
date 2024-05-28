@@ -1,0 +1,29 @@
+/* menu.component.css */
+.navbar {
+  background-color: #f8f9fa;
+}
+
+.navbar-brand {
+  color: #333;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #333;
+  font-size: 1.2em;
+}
+
+.nav-item {
+  margin-right: 1em;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.custom-toggler {
+  background-color: #28a745;
+  border-color: #28a745;
+}

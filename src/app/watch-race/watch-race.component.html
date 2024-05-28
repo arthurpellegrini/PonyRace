@@ -1,0 +1,20 @@
+<div *ngIf="race">
+  <h2>{{ raceService.getRaceName() }}</h2>
+  <p *ngIf="timeRemaining">Time remaining: {{ timeRemaining }}</p>
+
+  <div *ngIf="!isRaceFinished">
+    <div *ngFor="let pony of ponies" (click)="boostsPony(pony.id)" [style.transform]="'translateX(' + pony.position + '%)'">
+      <img [src]="raceService.getPonyImageUrl(pony.color, pony.boosted)" alt="{{ pony.name }}">
+      <p class="text-center">{{ pony.name }} (Position: {{ pony.position }})</p>
+    </div>
+  </div>
+
+  <div *ngIf="isRaceFinished">
+    <h3>Race Finished! Winner: </h3>
+    <img [src]="raceService.getPonyImageUrl(winnerPony?.color ?? 'defaultColor')" alt="{{ winnerPony?.name }}">
+    <p>{{ winnerPony?.name }}</p>
+    <div class="alert" [ngClass]="betResult.includes('Congratulations') ? 'alert-success' : betResult.includes('Sorry') ? 'alert-danger' : 'alert-info'">
+      <p>{{ betResult }}</p>
+    </div>
+  </div>
+</div>

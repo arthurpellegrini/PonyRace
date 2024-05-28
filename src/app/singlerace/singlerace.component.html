@@ -1,0 +1,13 @@
+<!-- src/app/single-race/single-race.component.html -->
+<h2>{{ race?.name }}</h2>
+<p>Time Remaining: {{ timeRemaining }}</p>
+<div *ngIf="errorMessage" class="alert alert-danger mt-1">{{ errorMessage }}</div>
+<div class="ponies-container">
+  <div *ngFor="let pony of race?.ponies" class="pony" (click)="betOnPony(pony.id)"
+       [ngClass]="{'selected': race?.betPonyId === pony.id, 'disabled': timeRemaining === 'Now!'}">
+    <img [src]="raceService.getPonyImageUrl(pony.color)" alt="{{ pony.name }}" />
+    <div>{{ pony.name }}</div>
+  </div>
+</div>
+<button type="button" class="btn btn-info" *ngIf="timeRemaining !== 'Now!'" (click)="watchLive()">Watch Live</button>
+<button type="button" class="btn btn-danger" (click)="onBack()">Change Race</button>
